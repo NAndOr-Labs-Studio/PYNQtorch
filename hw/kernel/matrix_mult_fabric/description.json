@@ -1,0 +1,7 @@
+{
+  "name": "matrix_mult",
+  "description": "256*256 int8 dsp matrix multiplication",
+  "hls": {
+    "config": "hls_config.cfg"
+  }
+}
