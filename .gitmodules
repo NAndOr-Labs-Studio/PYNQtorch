@@ -1,0 +1,12 @@
+[submodule "sw/pytorch"]
+	path = sw/pytorch
+	url = https://github.com/pytorch/pytorch.git
+	branch = release/2.8
+[submodule "sw/vision"]
+	path = sw/vision
+	url = https://github.com/pytorch/vision.git
+	branch = release/0.23
+[submodule "sw/audio"]
+	path = sw/audio
+	url = https://github.com/pytorch/audio.git
+	branch = release/2.8
