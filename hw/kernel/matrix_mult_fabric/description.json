@@ -1,6 +1,6 @@
 {
-  "name": "matrix_mult",
-  "description": "256*256 int8 dsp matrix multiplication",
+  "name": "matrix_mult_fabric",
+  "description": "256*256 int8 fabric matrix multiplication",
   "hls": {
     "config": "hls_config.cfg"
   }

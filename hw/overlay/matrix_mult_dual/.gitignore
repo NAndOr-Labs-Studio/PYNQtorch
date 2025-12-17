@@ -1,0 +1,5 @@
+matrix_mult_dual/
+*.jou
+*.log
+.Xil/
+dfx_runtime.txt
