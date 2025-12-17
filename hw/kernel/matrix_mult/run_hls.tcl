@@ -1,48 +1,64 @@
-#Copyright (C) 2024, Advanced Micro Devices, Inc. All rights reserved.
-#SPDX-License-Identifier: MIT
+# Set kernel variables
+set PROJ "matrix_mult"
+set SOLN "sol1"
+set DESCRIPTION "256*256 int8 dsp matrix multiplication"
 
-# you can revise the project name 
-set project_name "matrix_mult"
+# Set FPGA part and clock period
+set XPART xc7z020-clg400-1
+set CLKP 5
+
+# Set flags for various stages
+set CSIM 1
+set CSYNTH 1
+set COSIM 1
+set PACKAGE 1
+set VIVADO_SYN 0
+set VIVADO_IMPL 0
+
+# Save current directory
+set CUR_DIR [pwd]
 
 # Create a project
-open_project -reset ${project_name}
+open_project -reset ${PROJ}
 
 # Add design files
-add_files ${project_name}.cpp
+add_files ${PROJ}.cpp
 # Add test bench & files
-add_files -tb ${project_name}_tb.cpp
+add_files -tb ${PROJ}_tb.cpp
 
 # Set the top-level function
-set_top ${project_name}
+set_top ${PROJ}
 
 # ########################################################
 # Create a solution
-open_solution -reset ${project_name} -flow_target vivado
+open_solution -reset ${SOLN} -flow_target vivado
 
 # Define technology and clock rate
-set_part  {xc7z020-clg400-1}
-create_clock -period 5
+set_part $XPART
+create_clock -period $CLKP
 
-# Set variable to select which steps to execute
-set hls_exec 3
-
-
-csim_design
-# Set any optimization directives
-# End of directives
-
-if {$hls_exec >= 1} {
-	# Run Synthesis
-   csynth_design
+if {$CSIM == 1} {
+  csim_design
 }
-if {$hls_exec >= 2} {
-	# Run Synthesis, RTL Simulation
-   cosim_design
+
+if {$CSYNTH == 1} {
+  csynth_design
 }
-if {$hls_exec >= 3} { 
-	# Run Synthesis, RTL Simulation, RTL implementation
-   #export_design -format ip_catalog -version "1.00a" -library "hls" -vendor "xilinx.com" -description "A memory mapped IP created by Vitis HLS" -evaluate verilog
-   export_design -format ip_catalog -ipname ${project_name} -library Vitis_DSP_Library -description "256*256 int8 dsp matrix multiplication" -evaluate verilog
+
+if {$COSIM == 1} {
+  cosim_design
+}
+
+if {$PACKAGE == 1} {
+  export_design -rtl verilog -format ip_catalog -ipname ${PROJ} -display_name ${PROJ} -description ${DESCRIPTION}
+}
+
+if {$VIVADO_SYN == 1} {
+  export_design -flow syn -rtl verilog -format ip_catalog -ipname ${PROJ} -display_name ${PROJ} -description ${DESCRIPTION}
+}
+
+if {$VIVADO_IMPL == 1} {
+  export_design -flow impl -rtl verilog -format ip_catalog -ipname ${PROJ} -display_name ${PROJ} -description ${DESCRIPTION}
 }
 
 exit

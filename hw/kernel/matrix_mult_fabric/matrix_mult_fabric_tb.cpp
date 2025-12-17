@@ -71,7 +71,7 @@ int main(int argc, char** argv)
         matrix_mult_sw( in1, in2, sw_result, dim);
 
         //Launch the Hardware solution
-        matrix_mult( in1, in2, hw_result);
+        matrix_mult_fabric( in1, in2, hw_result);
 
         //Compare the results of hardware to the software
         for(int i=0; i< dim * dim; i++)

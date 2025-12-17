@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Mon Dec 15 23:22:40 2025" VIVADOVERSION="2025.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Dec 17 16:40:34 2025" VIVADOVERSION="2025.2">
 
   <SYSTEMINFO ARCH="zynq" DEVICE="7z020" NAME="matrix_mult" PACKAGE="clg400" SPEEDGRADE="-1"/>
 
@@ -992,7 +992,7 @@
         </BUSINTERFACE>
       </BUSINTERFACES>
     </MODULE>
-    <MODULE COREREVISION="2114393074" FULLNAME="/matrix_mult_0" HWVERSION="1.0" INSTANCE="matrix_mult_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="matrix_mult" VLNV="xilinx.com:Vitis_DSP_Library:matrix_mult:1.0">
+    <MODULE COREREVISION="2114395558" FULLNAME="/matrix_mult_0" HWVERSION="1.0" INSTANCE="matrix_mult_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="matrix_mult" VLNV="xilinx.com:hls:matrix_mult:1.0">
       <DOCUMENTS/>
       <ADDRESSBLOCKS>
         <ADDRESSBLOCK ACCESS="read-write" INTERFACE="s_axi_CTRL" NAME="Reg" RANGE="65536" USAGE="register">

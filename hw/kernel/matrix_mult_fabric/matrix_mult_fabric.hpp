@@ -13,6 +13,6 @@
 typedef ap_int<8> buf_t;
 
 //Declaring the hardware function
-void matrix_mult(int* in1 , int* in2 , int* out);
+void matrix_mult_fabric(int* in1 , int* in2 , int* out);
 
 #endif

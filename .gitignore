@@ -1,0 +1,43 @@
+# VS Code Local History
+.history/
+
+# Common IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Build artifacts
+*.o
+*.a
+*.so
+*.exe
+build/
+dist/
+*.log
+
+# HLS generated files
+hls/
+logs/
+*.rpt
+*.xml
+vivado*.jou
+vivado*.log
+dfx_runtime*.txt
+*.str
+*.dir/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.pytest_cache/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# System files
+.DS_Store
+Thumbs.db

@@ -4,7 +4,7 @@
 
 #include "matrix_mult_fabric.hpp"
 
-void matrix_mult(int* in1, int* in2, int* out)
+void matrix_mult_fabric(int* in1, int* in2, int* out)
 {
     buf_t Arow[DATA_SIZE];
     buf_t Bbuf[DATA_SIZE][DATA_SIZE];
