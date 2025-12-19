@@ -4,9 +4,9 @@
 
 A set of steps to build HLS-based-accelerated PyTorch on PYNQ-support devices, especially on ARM-v7l architecture.
 
-The project is mainly used as a study and verification platform for those who is working on AI hardware.
+The project is mainly used as a study and verification platform for those who are working on AI hardware.
 
-hw folder gives a shabby implementation for how to regist a torch backend in python in a easy way. It's very suitable for short-term verification for HLS algorithm.
+hw folder gives a shabby implementation for how to register a torch backend in python in an easy way. It's very suitable for short-term verification for HLS algorithm.
 
 ## Project Structure
 
@@ -24,8 +24,8 @@ PYNQtorch/
 │   │       ├── <kernel_name>_tb.cpp    # kernel testbench
 │   │       ├── <kernel_name>.hpp       # kernel header
 │   │       ├── description.json        # kernel description
-│   │       ├── hls_config.cfg          # HLS congfig
-│   │       └── run_hls.tcl             # HLS Tcl
+    │       ├── hls_config.cfg          # HLS config
+    │       └── run_hls.tcl             # HLS Tcl
 │   └── overlay/                        # Vivado overlay
 |       └── <overlay_name>/
 │           ├── block_design.tcl        # Block Design Tcl
@@ -35,13 +35,13 @@ PYNQtorch/
 |   ├── audio   (submodule)             # TorchAudio v2.8
 |   └── vision  (submodule)             # TorchVision v0.23
 ├── backend/
-|   └── pytorch_zynq                    # custom backend example
+|   └── pytorch_zynq/                   # custom backend example
 |       ├── __init__.py                 # entrance
 |       ├── device.py                   # attribute define
 |       ├── hardware.py                 # PYNQ overlay layer
 |       ├── linear.py                   # custom linear binding
 |       └── ops.py                      # fitting layer to hw
-├── scripts
+├── scripts/
 |   └── environments.sh                 # set compile flags
 ├── LICENSE
 └── README.md
@@ -54,7 +54,7 @@ PYNQtorch/
 ## Software Requirements
 
 - PYNQ v3.1.1
-- ENVs (if you want to build by youself)
+- ENVs (if you want to build by yourself)
 
 ## Getting Started
 
@@ -66,7 +66,7 @@ PYNQtorch/
 
 ## Building from Source
 
-Builing from source may take some patience to success. However, hardware part should be easy so, grep hardware building on the start.
+Building from source may require some patience to succeed. However, hardware part should be easy so, start with hardware building.
 
 ### HLS part
 
@@ -105,10 +105,10 @@ Make sure you are using Linux. The compilation is not working on Windows.
 
 3. Make a chroot in ARM-v7l
 
-    Using Trxie is reasonable, I don't want to explain that.
+    Using Trixie is reasonable, I don't want to explain that.
 
    ```cmd
-   sudo debootstrap --arch=armhf trxie /path/to/your/chroot
+   sudo debootstrap --arch=armhf trixie /path/to/your/chroot
    ```
 
 4. Run chroot
@@ -122,12 +122,12 @@ Make sure you are using Linux. The compilation is not working on Windows.
 
 5. Copy your sysroot
 
-    The `GLIBC` lib in `Trxie` release is too new, and also we need some libraries in your board in case of something unsuitable. Then put all of them into a folder called "`sysroot`".
+    The `GLIBC` lib in `Trixie` release is too new, and we also need some libraries in your board in case of something unsuitable. Then put all of them into a folder called "`sysroot`".
 
     You just need to download (or copy) the folders below:
 
     ```text
-    /root/sysroot/ (path recommanded)
+    /root/sysroot/ (path recommended)
     ├── lib/                            # path /lib on your board
     └── usr/
         ├── include/                    # path /usr/include on your board
@@ -138,7 +138,7 @@ Make sure you are using Linux. The compilation is not working on Windows.
 
     Get all package you need and clone this repository.
 
-    Note that PyTorch recommands **GCC 11**. A newer compiler could lead to a series of bugs.
+    Note that PyTorch recommends **GCC 11**. A newer compiler could lead to a series of bugs.
 
     Replace your apt mirror release to `sid`, or you will find gcc-11 is missing, lol.
 
@@ -169,7 +169,7 @@ Make sure you are using Linux. The compilation is not working on Windows.
     $(this repository) source scripts/environments.sh
     ```
 
-    This will create a set of typical compiling envrionment flags, you need to make sure that some performance flags and dependency paths (e.g. `sysroot`) suit your system, though.
+    This will create a set of typical compiling environment flags, you need to make sure that some performance flags and dependency paths (e.g. `sysroot`) suit your system, though.
 
 7. Compile torch
 
@@ -185,7 +185,7 @@ Make sure you are using Linux. The compilation is not working on Windows.
 
 ## About backend performance
 
-We know ZYNQ series vary from a series of performance. On the typical ZYNQ 7020 (-1 speed), the hardware maxtrix multiplier gives a 22x accelerating rate in average. Feel free to explore the performance on different devices.
+We know ZYNQ series vary in performance. On the typical ZYNQ 7020 (-1 speed), the hardware matrix multiplier gives a 22x acceleration rate on average. Feel free to explore the performance on different devices.
 
 ## License
 
