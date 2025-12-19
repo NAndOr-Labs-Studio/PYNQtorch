@@ -122,7 +122,7 @@ Make sure you are using Linux. The compilation is not working on Windows.
 
 5. Copy your sysroot
 
-    The `GLIBC` lib in `Trxie` release is too new, and also we need some lib in your board on condition that something unsuitable. Then put all of them into a folder called "`sysroot`".
+    The `GLIBC` lib in `Trxie` release is too new, and also we need some libraries in your board in case of something unsuitable. Then put all of them into a folder called "`sysroot`".
 
     You just need to download (or copy) the folders below:
 
