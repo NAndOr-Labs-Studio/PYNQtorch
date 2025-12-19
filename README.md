@@ -61,4 +61,4 @@ vivado -mode batch -source run_vivado.tcl
 ...
 
 ## License
-GPL-2.0 license
+AGPL-3.0 license
