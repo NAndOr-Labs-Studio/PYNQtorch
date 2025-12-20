@@ -1,22 +1,25 @@
 # PYNQtorch
 
+[简体中文](README_CN.md)
+
 ## Overview
 
 A set of steps to build HLS-based-accelerated PyTorch on PYNQ-support devices, especially on ARM-v7l architecture.
 
 The project is mainly used as a study and verification platform for those who are working on AI hardware.
 
-hw folder gives a shabby implementation for how to register a torch backend in python in an easy way. It's very suitable for short-term verification for HLS algorithm.
+`hw/` and `backend/` folder gives a shabby implementation for how to register a torch backend in python in an easy way. It's very suitable for short-term verification for HLS algorithm.
 
 ## Project Structure
 
 ```text
 PYNQtorch/
 ├── notebook/
-│   ├── *.ipynb                         # Jupyter notebook
-│   ├── *.bit                           # FPGA bitstream
-│   ├── *.hwh                           # FPGA hardware handoff
-│   └── [others]                        # others
+|   ├── backend_example/                # backend example
+|   |   ├── example_EN.ipynb            # backend example in English
+|   |   └── example_CN.ipynb            # backend example in Chinese
+|   └── hw_test/                        # hardware test
+│       └── matrix_mult.ipynb           # Jupyter notebook
 ├── hw/
 │   ├── kernel/                         # HLS kernel
 |   |   └── <kernel_name>/
@@ -24,11 +27,12 @@ PYNQtorch/
 │   │       ├── <kernel_name>_tb.cpp    # kernel testbench
 │   │       ├── <kernel_name>.hpp       # kernel header
 │   │       ├── description.json        # kernel description
-    │       ├── hls_config.cfg          # HLS config
-    │       └── run_hls.tcl             # HLS Tcl
+|   │       ├── hls_config.cfg          # HLS config
+|   │       └── run_hls.tcl             # HLS Tcl
 │   └── overlay/                        # Vivado overlay
 |       └── <overlay_name>/
-│           ├── block_design.tcl        # Block Design Tcl
+│           ├── *.bit                   # FPGA bitstream
+│           ├── *.hwh                   # FPGA hardware handoff
 │           └── run_vivado.tcl          # synth & impl Tcl
 ├── sw/
 |   ├── pytorch (submodule)             # PyTorch v2.8
@@ -37,12 +41,12 @@ PYNQtorch/
 ├── backend/
 |   └── pytorch_zynq/                   # custom backend example
 |       ├── __init__.py                 # entrance
-|       ├── device.py                   # attribute define
+|       ├── device.py                   # attribute definition
 |       ├── hardware.py                 # PYNQ overlay layer
 |       ├── linear.py                   # custom linear binding
-|       └── ops.py                      # fitting layer to hw
+|       └── ops.py                      # fitting sw operators to hw
 ├── scripts/
-|   └── environments.sh                 # set compile flags
+|   └── environments.sh                 # set compilation flags
 ├── LICENSE
 └── README.md
 ```
@@ -61,7 +65,7 @@ PYNQtorch/
 ### Quick start guide
 
 1. clone this repository to your board
-2. copy backend/pytorch_zynq to your workspace
+2. copy `backend/pytorch_zynq/` to your workspace
 3. import backend & play
 
 ## Building from Source
@@ -85,8 +89,6 @@ vivado -mode batch -source run_vivado.tcl
 ### Software building
 
 It seems like building a PyTorch is somewhat a cake, but it will take you some time for sure!
-
-#### Environment preparation
 
 Make sure you are using Linux. The compilation is not working on Windows.
 
@@ -182,6 +184,12 @@ Make sure you are using Linux. The compilation is not working on Windows.
 8. Compile vision and audio library (optional)
 
     The procedure is similar to torch compilation. Use `environments.sh` to help you.
+
+## Notebooks
+
+We provide some Jupyter notebooks to help you get started. You can find them in the `notebook/` folder.
+
+Note that you must need to create your own workspace to run the notebooks, including copy `backend/pytorch_zynq/` and hardware config files to the right place. It's not an open-box solution.
 
 ## About backend performance
 
