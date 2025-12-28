@@ -158,7 +158,8 @@ Make sure you are using Linux. The compilation is not working on Windows.
     Then, you need to init torch source code as there are lots of submodules.
 
     ```cmd
-    $(this repository) git submodule init --recursive
+    $(this repository) git submodule init
+    $(this repository) git submodule update --init --recursive
     ```
 
     This may take a while, drink some tea then.
@@ -198,3 +199,4 @@ We know ZYNQ series vary in performance. On the typical ZYNQ 7020 (-1 speed), th
 ## License
 
 AGPL-3.0 license
+
